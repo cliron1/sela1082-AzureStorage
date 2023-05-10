@@ -14,7 +14,7 @@ public class AzureStorageService : IStorageService {
     public AzureStorageService(IConfiguration config) {
         var client = new BlobServiceClient(config.GetConnectionString("Storage"));
         container = client.GetBlobContainerClient("rscs");
-        container.CreateIfNotExists();
+        container.CreateIfNotExists(PublicAccessType.Blob);
     }
 
     public async Task<List<string>> GetFiles() {
